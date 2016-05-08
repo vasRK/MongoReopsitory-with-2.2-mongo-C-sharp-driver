@@ -37,7 +37,7 @@ namespace Repository
 
         T IMongoRepository.Update<T>(Guid entityId, UpdateDefinition<T> update)
         {
-            _db.GetCollection<T>(typeof(T).Name.ToLower()).UpdateOne<T>(x => x.Id.Equals(entityId), update);
+            var result = _db.GetCollection<T>(typeof(T).Name.ToLower()).UpdateOne<T>(x => x.Id.Equals(entityId), update);
             return ((IMongoRepository)(this)).Read<T>(entityId);
         }
 
